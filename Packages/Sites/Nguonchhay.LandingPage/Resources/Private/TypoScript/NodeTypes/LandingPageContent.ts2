@@ -1,0 +1,11 @@
+prototype(Nguonchhay.LandingPage:PageContent) < prototype(TYPO3.TypoScript:Template) {
+	templatePath = 'resource://Nguonchhay.LandingPage/Private/Templates/TypoScriptObjects/PageContent.html'
+	title = ${q(node).property('title')}
+	identifier = ${node.identifier}
+	site = ${q(site).get(0)}
+
+	content = TYPO3.Neos:ContentCollection {
+		nodePath = ${q(node).find('main').property('_path')}
+		collection = ${q(node).children('main').children()}
+	}
+}

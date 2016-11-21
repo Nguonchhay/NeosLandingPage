@@ -1,0 +1,77 @@
+/**
+ * Root TypoScript template for the Neos Landing Page site
+ */
+page = TYPO3.Neos:Page {
+	head {
+		stylesheets.site = TYPO3.TypoScript:Template {
+			templatePath = 'resource://Nguonchhay.LandingPage/Private/Templates/Page/Default.html'
+			sectionName = 'stylesheets'
+		}
+
+		javascripts.site = TYPO3.TypoScript:Template {
+			templatePath = 'resource://Nguonchhay.LandingPage/Private/Templates/Page/Default.html'
+			sectionName = 'headScripts'
+		}
+	}
+
+	body {
+		templatePath = 'resource://Nguonchhay.LandingPage/Private/Templates/Page/Default.html'
+		sectionName = 'body'
+		parts {
+			menu = TYPO3.Neos:Menu
+		}
+
+		// These are your content areas, you can define as many as you want, just name them and the nodePath.
+		content {
+			// The default content section
+			main = TYPO3.Neos:PrimaryContent {
+				nodePath = 'main'
+				@cache {
+					mode = 'cached'
+				}
+			}
+		}
+
+		footer = TYPO3.Neos:ContentCollection {
+			nodePath = ${q(site).find('footer').property('_path')}
+			collection = ${q(site).children('footer').children()}
+			@cache {
+				mode = 'cached'
+			}
+		}
+
+		site = ${q(site).get(0)}
+		header = ${q(node).property('header')}
+		text = ${q(node).property('text')}
+		image = ${q(node).property('image')}
+
+		landingPages = ${q(site).children('[instanceof Nguonchhay.LandingPage:Page]').get()}
+
+		pages = Menu {
+			entryLevel = 1
+			templatePath = 'resource://Nguonchhay.LandingPage/Private/Templates/TypoScriptObjects/LandingPage.html'
+			maximumLevels = 1
+			renderHiddenInIndex = TRUE
+			content.iterationName = 'pagesIteration'
+
+			pageContent = TYPO3.TypoScript:Collection {
+				collection = ${q(site).children('[instanceof Nguonchhay.LandingPage:Page]').get()}
+				iterationName = 'pagesIteration'
+				itemName = 'node'
+				itemRenderer = Nguonchhay.LandingPage:PageContent
+			}
+		}
+
+		javascripts.site = TYPO3.TypoScript:Template {
+			templatePath = 'resource://Nguonchhay.LandingPage/Private/Templates/Page/Default.html'
+			sectionName = 'bodyScripts'
+		}
+	}
+}
+
+landingPage < page
+landingPage.body {
+	templatePath = 'resource://Nguonchhay.LandingPage/Private/Templates/Page/LandingPage.html'
+}
+
+include: NodeTypes/*.ts2

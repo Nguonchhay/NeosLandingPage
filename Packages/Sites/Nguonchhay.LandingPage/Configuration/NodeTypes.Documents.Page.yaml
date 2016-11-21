@@ -1,0 +1,51 @@
+'TYPO3.Neos.NodeTypes:Page':
+  superTypes:
+    'TYPO3.Neos.NodeTypes:TextMixin': TRUE
+    'TYPO3.Neos.NodeTypes:ImageMixin': TRUE
+  childNodes:
+    footer:
+      type: 'TYPO3.Neos:ContentCollection'
+      constraints:
+        nodeTypes:
+          'TYPO3.Neos.NodeTypes:Page': FALSE
+  ui:
+    inspector:
+      groups:
+        global:
+          label: 'Gobal properties'
+          position: 100
+  properties:
+    header:
+      type: string
+      defaultValue: 'Enter headline here'
+      ui:
+        inlineEditable: TRUE
+        aloha:
+          'format':
+            'p': FALSE
+            'h1': TRUE
+            'h2': TRUE
+            'h3': TRUE
+            'removeFormat': TRUE
+          'link':
+            'a': TRUE
+    copyRight:
+      type: string
+      ui:
+        label: 'Copyright text'
+        reloadIfChanged: TRUE
+        inspector:
+          group: global
+          position: 50
+          editorOption:
+            placeholder: 'Enter copy right text'
+
+
+
+'TYPO3.Neos:Document':
+  constraints:
+    nodeTypes:
+      '*': FALSE
+      'TYPO3.Neos:Shortcut': FALSE
+      'TYPO3.Neos.NodeTypes:Page': FALSE
+      'Nguonchhay.LandingPage:Page': TRUE

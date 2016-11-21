@@ -1,0 +1,30 @@
+{namespace neos=TYPO3\Neos\ViewHelpers}
+{namespace media=TYPO3\Media\ViewHelpers}
+
+<header>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<f:if condition="{image}">
+					<media:image asset="{image}" class="img-responsive" alt="{alternativeText}" title="{title}" />
+				</f:if>
+
+				<div class="intro-text">
+					<neos:contentElement.wrap>
+						<span class="name">
+							<neos:contentElement.editable property="header"  />
+						</span>
+					</neos:contentElement.wrap>
+
+					<hr class="star-light">
+
+					<neos:contentElement.wrap>
+						<span class="skills">
+							<neos:contentElement.editable property="text"  />
+						</span>
+					</neos:contentElement.wrap>
+				</div>
+			</div>
+		</div>
+	</div>
+</header>

@@ -1,0 +1,32 @@
+'Nguonchhay.LandingPage:Page':
+  superTypes:
+    'TYPO3.Neos.NodeTypes:Page': TRUE
+  childNodes:
+    main:
+      constraints:
+        nodeTypes:
+          'TYPO3.Neos.NodeTypes:Page': FALSE
+  ui:
+    label: 'Landing page'
+    icon: 'icon-file'
+  properties:
+    layout:
+      defaultValue: 'landingPage'
+    _hiddenInIndex:
+      defaultValue: TRUE
+    image:
+      ui:
+        inspector:
+          group: ''
+    alternativeText:
+      ui:
+        inspector:
+          group: ''
+    title:
+      ui:
+        inspector:
+          group: ''
+    copyRight:
+      ui:
+        inspector:
+          group: ''
